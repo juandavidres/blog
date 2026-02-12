@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipo de Entrega</title>
+  <link rel="stylesheet" href="static/style.css">
+  <style>
+    body {
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .contenedor-facturacion {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .contenedor-facturacion img {
+      width: 180px;
+      margin-bottom: 20px;
+    }
+
+    .tarjeta {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border: 1px solid red;
+      border-radius: 10px;
+      box-shadow: 0 0 10px red;
+      width: 300px;
+    }
+
+    .tarjeta h2 {
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .tarjeta p {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .botones button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .btn-confirmar {
+      background: red;
+      color: white;
+    }
+
+    .btn-cancelar {
+      background: gray;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor-facturacion">
+    <img src="/BENIGNO/static/img/delivery_moderno.png" alt="Entrega">
+    <div class="tarjeta">
+      <h2>Selecciona el método de entrega</h2>
+      <p>Elige cómo deseas recibir tu pedido</p>
+
+      <div class="botones">
+        <button id="btn-domicilio" class="btn-confirmar">Domicilio (+$3.000)</button>
+        <button id="btn-local" class="btn-cancelar">Recoger en local</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("btn-domicilio").addEventListener("click", () => {
+      localStorage.setItem("tipoEnvio", "domicilio");
+      window.location.href = "facturacion.html";
+    });
+
+    document.getElementById("btn-local").addEventListener("click", () => {
+      localStorage.setItem("tipoEnvio", "local");
+      window.location.href = "facturacion.html";
+    });
+  </script>
+
+</body>
+</html>

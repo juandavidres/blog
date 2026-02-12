@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificación de Pedido | Benigno</title>
+  <link rel="stylesheet" href="static/css/verificacion.css">
+</head>
+<body>
+  <div class="verificacion-container">
+    <h2>Elige el tipo de entrega</h2>
+    <p>Selecciona si deseas recoger en local o recibir tu pedido a domicilio.</p>
+
+    <div class="botones-entrega">
+      <button id="btn-recoger" class="btn-opcion">Recoger en local</button>
+      <button id="btn-domicilio" class="btn-opcion">Domicilio (+$3.000)</button>
+    </div>
+
+    <div class="acciones">
+      <button class="btn-cancelar" onclick="window.location.href='index.html'">Cancelar</button>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btnDomicilio = document.getElementById("btn-domicilio");
+    const btnRecoger = document.getElementById("btn-recoger");
+
+    // Cuando elige domicilio
+    btnDomicilio.addEventListener("click", () => {
+      localStorage.setItem("tipoEntrega", "domicilio");
+      localStorage.setItem("costoEnvio", "3000");
+      window.location.href = "facturacion.html";
+    });
+
+    // Cuando elige recoger en local
+    btnRecoger.addEventListener("click", () => {
+      localStorage.setItem("tipoEntrega", "recoger");
+      localStorage.setItem("costoEnvio", "0");
+      window.location.href = "facturacion.html";
+    });
+  });
+  </script>
+</body>
+</html>

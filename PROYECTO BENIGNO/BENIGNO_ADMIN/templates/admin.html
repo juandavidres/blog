@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin - BENIGNO</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="admin-panel">
+
+<header>
+  <h1>Panel de Administración - BENIGNO</h1>
+  <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+</header>
+
+<div class="container">
+
+  <table id="pedidos-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Productos</th>
+        <th>Total</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pedido in pedidos %}
+      <tr data-id="{{ pedido.id }}">
+        <td>{{ pedido.id }}</td>
+        <td>{{ pedido.fecha_creacion }}</td>
+        <td>{{ pedido.nombre }}</td>
+        <td>{{ pedido.correo }}</td>
+        <td>{{ pedido.telefono }}</td>
+        <td>{{ pedido.direccion }}</td>
+        <td>
+          {% for prod in pedido.productos %}
+            {{ prod.nombre }} ({{ prod.cantidad }})<br>
+          {% endfor %}
+        </td>
+        <td>{{ pedido.total }}</td>
+        <td>
+          <select class="estado-select" data-estado-actual="{{ pedido.estado }}">
+            <option value="Pendiente" {% if pedido.estado=='Pendiente' %}selected{% endif %}>Pendiente</option>
+            <option value="En Proceso" {% if pedido.estado=='En Proceso' %}selected{% endif %}>En Proceso</option>
+            <option value="Completado" {% if pedido.estado=='Completado' %}selected{% endif %}>Completado</option>
+          </select>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <audio id="notificacion" src="{{ url_for('static', filename='audio/alert.mp3') }}" preload="auto"></audio>
+</div>
+
+<!-- Modal de confirmación -->
+<div id="confirm-modal" class="modal">
+  <div class="modal-content">
+    <p id="confirm-text"></p>
+    <div class="modal-buttons">
+      <button id="confirm-yes">Sí</button>
+      <button id="confirm-no">No</button>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+<script>
+const modal = document.getElementById("confirm-modal");
+const confirmText = document.getElementById("confirm-text");
+let filaPendiente = null;
+let estadoPendiente = null;
+
+document.querySelectorAll(".estado-select").forEach(select => {
+  select.addEventListener("change", function() {
+    const fila = this.closest("tr");
+    const usuario = fila.querySelector("td:nth-child(3)").textContent;
+    const pedidoId = fila.querySelector("td:first-child").textContent;
+    const productos = fila.querySelector("td:nth-child(7)").innerText;
+    estadoPendiente = this.value;
+    filaPendiente = fila;
+
+    confirmText.innerHTML = `
+      ¿Está seguro de cambiar el estado del pedido <b>#${pedidoId}</b> del usuario <b>${usuario}</b> con productos:<br>${productos}?
+    `;
+    modal.style.display = "flex";
+  });
+});
+
+document.getElementById("confirm-yes").addEventListener("click", async () => {
+  const pedidoId = parseInt(filaPendiente.dataset.id);
+  await fetch("/actualizar_estado", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({id: pedidoId, estado: estadoPendiente})
+  });
+  filaPendiente.querySelector(".estado-select").dataset.estadoActual = estadoPendiente;
+  modal.style.display = "none";
+  filaPendiente = null;
+  estadoPendiente = null;
+});
+
+document.getElementById("confirm-no").addEventListener("click", () => {
+  // Restaurar valor anterior
+  filaPendiente.querySelector(".estado-select").value = filaPendiente.querySelector(".estado-select").dataset.estadoActual;
+  modal.style.display = "none";
+  filaPendiente = null;
+  estadoPendiente = null;
+});
+</script>
+</body>
+</html>
