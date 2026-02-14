@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESTOESBENIGNO  </title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="static/css/carrito.css">
+  <link rel="stylesheet" href="static/css/info.css">
+ 
+  <style>
+    /* ===================== Productos ===================== */
+    .productos-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .producto {
+      position: relative;
+      width: 200px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin: 15px;
+      text-align: center;
+      background: #fff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      overflow: visible !important;
+    }
+
+    .producto:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .producto img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .producto .agregar-carrito {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #e60000, #330000);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    .producto .agregar-carrito:hover {
+      background: linear-gradient(135deg, #ff1a1a, #660000);
+      transform: scale(1.2);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+
+
+
+
+
+
+<body class="fondo-benigno">
+
+
+
+
+
+  <header>
+    <div class="logo">
+      <img src="static/img/benigno-logo.png" alt="Benigno Logo">
+    </div>
+    <nav>
+  
+    </nav>
+  </header>
+
+
+  <!-- Contenido principal -->
+  <section class="hero" id="inicio">
+    <h2>Bienvenido/a a Benigno</h2>
+    <p>"Haciendo grandes cosas con propósito" ♥</p>
+  </section>
+
+
+
+
+  <section class="menu-info">
+
+  <a href="quienes.html" class="btn-info">Quiénes somos</a>
+
+  <a href="ubicacion.html" class="btn-info">Dónde estamos</a>
+
+  <a href="eventos.html" class="btn-info">
+    Reservas / Eventos 
+  </a>
+
+</section>
+
+
+
+
+
+  <!-- Carrusel -->
+  <section class="carrusel-mixto">
+    <div class="carrusel-lado" id="carrusel-izquierdo">
+      <img src="static/img/prod1.png" alt="Producto 1">
+      <img src="static/img/prod2.png" alt="Producto 2">
+      <img src="static/img/prod3.png" alt="Producto 3">
+    </div>
+
+    <div class="carrusel-centro" id="carrusel-centro">
+      <img src="static/img/slide1.png" alt="Cliente 1">
+      <img src="static/img/slide2.png" alt="Cliente 2">
+      <img src="static/img/slide3.png" alt="Cliente 3">
+    </div>
+
+    <div class="carrusel-lado" id="carrusel-derecho">
+      <img src="static/img/prod1.png" alt="Producto 1">
+      <img src="static/img/prod2.png" alt="Producto 2">
+      <img src="static/img/prod3.png" alt="Producto 3">
+    </div>
+  </section>
+
+  <section class="productos" id="menu">
+    <h3>Nuestros Productos</h3>
+
+    <div class="tabs">
+      <button class="tab-link active" data-tab="todos">Todos los artículos</button>
+      <button class="tab-link" data-tab="burger">Benigno Burger</button>
+
+      <button class="tab-link" data-tab="chips">Benigno Chips</button>
+    </div>
+
+    <div class="tab-content active" id="todos">
+
+      <div class="producto" data-title="Verona Burger" data-img="static/img/verona.png" data-desc="Reducción de vinagre de vino tinto..." data-valor="$20.000">
+        <img src="static/img/verona.png" alt="Verona Burger">
+        <h4>Verona Burger</h4>
+        <p class="valor">$20.000</p>
+      </div>
+
+      <div class="producto" data-title="Hamburguesa de la Pampa" data-img="static/img/pampa.png" data-desc="Pan brioche artesanal de parmesano..." data-valor="$15.000">
+        <img src="static/img/pampa.png" alt="Hamburguesa de la Pampa">
+        <h4>Hamburguesa de la Pampa</h4>
+        <p class="valor">$15.000</p>
+      </div>
+
+
+          
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+  </section>
+
+
+
+  
+
+</div>
+
+</div>
+
+
+
+
+
+
+  <!-- Modal del producto -->
+  <div id="modal-producto" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="modal-img" src="" alt="">
+      <h4 id="modal-title"></h4>
+      <p id="modal-desc"></p>
+      <p id="modal-valor" class="valor"></p>
+      <div class="acciones">
+        <button id="btn-ordenar">¡Pide ahora mismo!</button>
+      
+      </div>
+    </div>
+  </div>
+
+<!-- Botón flotante WhatsApp -->
+<div id="whatsapp-btn" title="Hacer pedido por WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <path fill="white" d="M16 .4C7.4.4.4 7.3.4 16c0 2.8.7 5.5 2.1 7.9L.3 31.7l8-2.1c2.3 1.3 5 2 7.7 2 
+    8.6 0 15.6-6.9 15.6-15.6S24.6.4 16 .4zm0 28.4c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 
+    1.2 1.2-4.6-.3-.5C3.8 20.8 3.2 18.5 3.2 16c0-7.1 5.7-12.8 12.8-12.8S28.8 8.9 28.8 
+    16 23.1 28.8 16 28.8zm7-9.6c-.4-.2-2.2-1.1-2.5-1.2-.3-.1-.6-.2-.8.2-.2.4-.9 1.2-1.1 
+    1.4-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.6.2-.2.3-.4.4-.6.1-.2 
+    0-.5 0-.6 0-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.8-.6h-.7c-.2 
+    0-.6.1-.9.4-.3.4-1.2 1.1-1.2 2.7 0 1.6 1.2 3.2 1.3 
+    3.4.2.2 2.3 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.2 1.6.2 
+    2.2.1.7-.1 2.2-.9 2.5-1.7.3-.8.3-1.5.2-1.7-.1-.2-.3-.3-.7-.5z"/>
+  </svg>
+</div>
+
+  
+
+
+
+  <script>
+document.getElementById("whatsapp-btn").addEventListener("click", function(){
+
+    const numero = "573148614878";
+    const mensaje = "Hola, quiero hacer un pedido en Benigno";
+
+    const url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensaje);
+
+    window.open(url, "_blank");
+});
+</script>
+
+
+
+
+
+<script>
+document.getElementById("btn-ordenar").addEventListener("click", function(){
+
+  const numero = "573148614878"; // Colombia con código país
+  const mensaje = "Hola, quiero hacer un pedido en Benigno 🍔";
+
+  const url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensaje);
+
+  window.open(url, "_blank");
+
+});
+</script>
+
+
+
+
+  <!-- Scripts -->
+  <script src="static/js/carousel.js"></script>
+  <script src="static/js/carrito.js"></script>
+  
+
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Benigno. Todos los derechos reservados.</p>
+      <div class="footer-links">
+        <a href="#menu">Menú</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#productos">Productos</a>
+      </div>
+      <p>Síguenos en:
+        <a href="#" target="_blank">Instagram</a> |
+        <a href="#" target="_blank">Facebook</a> |
+        <a href="#" target="_blank">TikTok</a>
+      </p>
+    </div>
+  </footer>
+
+
+
+<div class="particulas"></div>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+</html>

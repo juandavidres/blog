@@ -1,0 +1,451 @@
+/* ====== BASE / NAV / HERO (negro + rojo) ====== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+
+header {
+  background: #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 3px solid #e60000;
+}
+
+header img {
+  width: 120px;
+  height: auto;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #000 0%, #111 100%);
+  border-bottom: 3px solid #e60000;
+}
+.hero h2 {
+  color: #e60000;
+  font-size: 2.5rem;
+  margin: 0 0 10px;
+}
+.hero p {
+  color: #fff;
+}
+
+/* ===== CARRUSEL MIXTO ===== */
+.carrusel-mixto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  background: #000;
+  border-bottom: 3px solid #e60000;
+}
+
+/* Lados */
+.carrusel-lado {
+  position: relative;
+  width: 25%;
+  height: 90%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* Centro */
+.carrusel-centro {
+  position: relative;
+  width: 45%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+/* ===== IMÁGENES SIN RECORTES ===== */
+.carrusel-lado img,
+.carrusel-centro img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centra la imagen */
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* muestra la imagen completa */
+  background-color: #000; /* fondo si la imagen no llena el área */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.carrusel-lado img.active,
+.carrusel-centro img.active {
+  opacity: 1;
+}
+
+
+
+.productos {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.productos h3 {
+  color: #e60000;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+/* Pestañas */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.tab-link {
+  background: #111;
+  color: #fff;
+  border: 2px solid #e60000;
+  padding: 25px 70px;   /* Antes 10px 20px, agrandamos */
+  margin: 5px;
+  cursor: pointer;
+  font-size: 1.3rem;    /* Aumenta tamaño del texto */
+  transition: 0.3s;
+  border-radius: 40px;   /* Opcional, para que se vean más redondos */
+  .tab-link {
+  min-width: 150px;  /* ancho mínimo de cada pestaña */
+  text-align: center;
+}
+
+}
+
+.tab-link.active, .tab-link:hover {
+  background: #e60000;
+  color: #fff;
+}
+
+/* Contenedores de pestañas */
+.tab-content {
+  display: none;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tab-content.active {
+  display: flex;
+}
+
+/* Producto individual */
+.producto {
+  background: #111;
+  border: 12px solid #e60000;
+  width: 220px;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+
+}
+
+
+.tab-content .producto {
+  background: #111;
+  border: 2px solid #e60000;
+  width: 300px;       /* Antes 220px, agranda aquí */
+  padding: 100px;      /* Puedes aumentar el padding también */
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tab-content .producto img {
+  width: 100%;
+  height: auto;           /* deja que la imagen use su tamaño natural */
+  max-height: 500px;      /* límite para no romper el diseño */
+  object-fit: contain;    /* muestra la imagen completa */
+  border-radius: 5px;
+  background-color: #000; /* por si la imagen no llena el espacio */
+}
+
+
+
+
+.producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(255,0,0,0.5);
+}
+
+.producto img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.producto h4 {
+  color: #e60000;
+  margin: 10px 0 5px;
+}
+
+.producto p {
+  color: #fff;
+  margin: 5px 0;
+}
+
+.producto .valor {
+  font-weight: bold;
+}
+
+/* Modal */
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  background-color: #111;
+  margin: 10% auto;
+  padding: 20px;
+  border: 2px solid #e60000;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;          /* permite ver toda la imagen */
+  max-height: 400px;     /* evita que sea demasiado grande */
+  object-fit: contain;   /* muestra la imagen completa */
+  border-radius: 5px;
+  background-color: #000; /* rellena si sobra espacio */
+}
+
+
+.modal-content .acciones button {
+  background: #e60000;
+  color: #fff;
+  border: none;
+  padding: 7px 15px;
+  margin: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-content .acciones button:hover {
+  background: #ff1a1a;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+
+/* Pie de pagina  */
+
+footer {
+  background-color: #e60000;
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px;
+  border-top: 3px solid #111;
+  font-family: 'Poppins', sans-serif;
+}
+
+footer .footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 8px;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #000;
+}
+
+footer .footer-links {
+  margin: 10px 0;
+}
+
+
+/* ====== FONDO CON LOGO BORROSO ====== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("/static/img/benigno-logo.png") no-repeat center center;
+  background-size: 100%; /* ajusta el tamaño del logo */
+  filter: blur(20px);
+  opacity: 1.0; /* hazlo más visible si quieres */
+  z-index: -1;
+  pointer-events: none; /* evita que bloquee clics */
+}
+
+/* Capa oscura para contraste */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+
+
+/* ===== CARRUSEL MIXTO ===== */
+.carrusel-mixto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  background: #000;
+  border-bottom: 3px solid #e60000;
+}
+
+/* Lados */
+.carrusel-lado {
+  position: relative;
+  width: 25%;
+  height: 90%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.carrusel-lado img 
+/* ===== IMÁGENES SIN RECORTES ===== */
+.carrusel-lado img,
+.carrusel-centro img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centra la imagen */
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: none; /* evita cortes y deformaciones */
+  background-color: #000; /* rellena fondo */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.carrusel-lado img.active,
+.carrusel-centro img.active {
+  opacity: 1;
+}
+
+/* Centro */
+.carrusel-centro {
+  position: relative;
+  width: 45%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.carrusel-centro img 
+/* ===== IMÁGENES SIN RECORTES ===== */
+.carrusel-lado img,
+.carrusel-centro img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centra la imagen */
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: none; /* evita cortes y deformaciones */
+  background-color: #000; /* rellena fondo */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.carrusel-lado img.active,
+.carrusel-centro img.active {
+  opacity: 1;
+}
+
+.carrusel-centro img.active {
+  opacity: 1;
+}
+
+/* ===== FIX: mostrar imágenes completas en el carrusel (sin recortes) ===== */
+/* Aplica a ambos carruseles usados (carousel-fade y carrusel-mixto) para asegurarnos */
+.carousel-fade .slide,
+.carrusel-mixto .carrusel-centro img,
+.carrusel-mixto .carrusel-lado img {
+  position: absolute;            /* posicionar en el centro del contenedor */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centrar exactamente */
+  width: auto;                   /* usar tamaño natural */
+  height: auto;
+  max-width: 100%;               /* ajustar al contenedor sin recortar */
+  max-height: 100%;
+  object-fit: contain;           /* mostrar la imagen completa (sin recortes) */
+  object-position: center center;
+  background-color: transparent; /* evita fondo negro si no lo quieres */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+}
+
+/* Mostrar la imagen activa */
+.carousel-fade .slide.active,
+.carrusel-mixto .carrusel-centro img.active,
+.carrusel-mixto .carrusel-lado img.active {
+  opacity: 1;
+}
+
+
+/* ===================== Productos ===================== */
+.producto {
+  position: relative; /* para que el botón se posicione sobre el producto */
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 15px;
+  text-align: center;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.producto:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+

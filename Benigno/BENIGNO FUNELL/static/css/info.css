@@ -1,0 +1,38 @@
+.pagina-info{
+  max-width:900px;
+  margin:60px auto;
+  padding:40px;
+  background:rgba(0,0,0,0.6);
+  border-radius:20px;
+  color:white;
+  text-align:center;
+}
+
+.volver{
+  display:block;
+  text-align:center;
+  margin:40px;
+  color:#e60000;
+  text-decoration:none;
+}
+
+.btn-reservar{
+  display:inline-block;
+  margin-top:20px;
+  background:#e60000;
+  color:white;
+  padding:15px 30px;
+  border-radius:30px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.btn-reservar:hover{
+  background:#ff1a1a;
+}
+
+
+
+body {
+  background: transparent !important;
+}
